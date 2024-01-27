@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #f5f5f5;
+  font-family: "Merriweather", sans-serif;
+}
+
+:root {
+  --primary: #3498db;
+}
+
+p {
+  color: #555555;
+}
+
+.button {
+  background-color: var(--primary);
+  color: white;
+}
+.button:hover {
+  color: white;
+}
+
+h2,
+.icon {
+  color: #333333;
+}
+
+.image {
+  animation: moving 2.4s linear infinite;
+
+  position: relative;
+  /* transition: 0.4s; */
+}
+
+@keyframes moving {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -20px;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+.footer {
+  background-color: #f8f8f8;
+}

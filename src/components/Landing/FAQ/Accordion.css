@@ -1,0 +1,42 @@
+.ant-collapse-header {
+  background-color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 10px;
+  border-bottom: none;
+  margin-bottom: 10px;
+  color: #333333;
+}
+
+.ant-collapse-content-box p {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  border-top: none;
+  color: #555555;
+}
+
+.ant-collapse-expand-icon {
+  color: var(--primary);
+}
+
+.ant-collapse-expand-icon svg {
+  font-size: 20px;
+}
+
+.ant-collapse {
+  border: none;
+}
+.ant-collapse > .ant-collapse-item {
+  border-bottom: none;
+}
+
+:where(.css-dev-only-do-not-override-1qhpsh8).ant-collapse {
+  color: white;
+}
+
+.ant-collapse-item {
+  margin-bottom: 10px;
+  background-color: white;
+  border-radius: 8px;
+}
