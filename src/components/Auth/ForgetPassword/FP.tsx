@@ -1,6 +1,7 @@
-import { Mail } from "lucide-react";
+// import { Mail } from "lucide-react";
 
-import { Input, Button } from "antd";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const ForgetPassword = () => {
   return (
@@ -15,11 +16,7 @@ const ForgetPassword = () => {
             Enter your email address and we’ll send you a link to reset your
             password.
           </p>
-          <Input
-            prefix={<Mail style={{ color: "#777777", marginRight: "8px" }} />}
-            className="p-2 shadow-md"
-            placeholder="Write your email"
-          />
+          <Input className="p-2 shadow-md" placeholder="Write your email" />
           <Button className="w-full button">Send</Button>
         </div>
       </div>

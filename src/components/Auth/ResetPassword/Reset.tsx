@@ -1,6 +1,7 @@
-import { Mail } from "lucide-react";
+// import { Mail } from "lucide-react";
 
-import { Input, Button } from "antd";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const Reset = () => {
   return (
@@ -12,14 +13,10 @@ const Reset = () => {
             Reset password
           </h3>
           <Input
-            prefix={<Mail style={{ color: "#777777", marginRight: "8px" }} />}
-            className="p-2 shadow-md"
-            placeholder="write a strong password"
+          // prefix={<Mail style={{ color: "#777777", marginRight: "8px" }} />}
           />
           <Input
-            prefix={<Mail style={{ color: "#777777", marginRight: "8px" }} />}
-            className="p-2 shadow-md"
-            placeholder="Confirm password"
+          // prefix={<Mail style={{ color: "#777777", marginRight: "8px" }} />}
           />
           <Button className="w-full button">Submit</Button>
         </div>

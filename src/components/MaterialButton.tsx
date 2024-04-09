@@ -3,17 +3,18 @@ type ButtonProps = {
 };
 
 import { useNavigate } from "react-router-dom";
+import { Button } from "./ui/button";
 
 const MaterialButton = ({ label }: ButtonProps) => {
   const navigat = useNavigate();
 
   return (
     <div>
-      <button
+      <Button
         className="button py-3 text-[18px] max-md:hidden  text-white transition hover:shadow-lg "
         onClick={() => navigat("/login")}>
         {label}
-      </button>
+      </Button>
     </div>
   );
 };

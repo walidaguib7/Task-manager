@@ -1,8 +1,9 @@
-import { Mail, User } from "lucide-react";
-import Idea from "../../../assets/great-idea-flatline.svg";
-import { Input, Button } from "antd";
+import Idea from "/great-idea-flatline.svg";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm, Controller } from "react-hook-form";
+import { Textarea } from "@/components/ui/textarea";
 
 type FormValues = {
   username: string;
@@ -12,12 +13,18 @@ type FormValues = {
 
 const ContactForm = () => {
   const Submit: SubmitHandler<FormValues> = (data: FormValues) => {
-    console.log("Form data :", data);
+    if (!formState.isValid) {
+      console.log("error");
+    } else {
+      console.log(data);
+    }
   };
 
   const MyForm = useForm<FormValues>();
-  const { register, handleSubmit } = MyForm;
-  const { TextArea } = Input;
+  const { handleSubmit, control, formState } = MyForm;
+
+  const { errors } = formState;
+
   return (
     <div className="pt-6 px-24 max-sm:px-8">
       <div className="pt-6 pb-8">
@@ -33,42 +40,36 @@ const ContactForm = () => {
               alt=""
             />
           </div>
-          <form onSubmit={handleSubmit(Submit)} className="w-[450px]">
-            <Input
-              placeholder="write your username"
-              prefix={<User style={{ color: "#777777" }} />}
-              id="username"
-              className="mb-5 shadow-md p-3"
-              {...register("username", {
-                required: {
-                  message: "Please write your username",
-                  value: true,
-                },
-              })}
+          <form
+            onSubmit={handleSubmit(Submit)}
+            className="w-[450px] flex flex-col gap-5">
+            <Controller
+              name="email"
+              control={control}
+              defaultValue=""
+              render={({ field }) => <Input {...field} placeholder="email" />}
             />
-            <Input
-              placeholder="write your email"
-              prefix={<Mail style={{ color: "#777777" }} />}
-              className="mb-5 shadow-md p-3"
-              {...register("email", {
-                required: { message: "Please write your email", value: true },
-              })}
+            <p>{errors.email?.message}</p>
+            <Controller
+              name="username"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <Input {...field} placeholder="username" />
+              )}
             />
-            <TextArea
-              className="mb-5 shadow-md p-3"
-              rows={4}
-              id="description"
-              placeholder="Write something"
-              {...register("description", {
-                required: { message: "Field is Empty", value: true },
-              })}
+            <p className="text-red-700">{errors.username?.message}</p>
+
+            <Controller
+              name="description"
+              defaultValue=""
+              control={control}
+              render={({ field }) => (
+                <Textarea placeholder="Your feedback" {...field} />
+              )}
             />
-            <Button
-              color="white"
-              htmlType="submit"
-              className="text-center bg-blue-500 w-[250px] flex justify-center m-auto  text-white hover:text-white">
-              Submit
-            </Button>
+            <p>{errors.description?.message}</p>
+            <Button type="submit">Submit</Button>
           </form>
         </div>
       </div>

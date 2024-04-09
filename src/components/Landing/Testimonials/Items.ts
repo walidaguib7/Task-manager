@@ -1,7 +1,7 @@
-import BlackW from '../../../assets/black-w.jpg'
-import BlackM from '../../../assets/black-m.jpg'
-import WhiteW from '../../../assets/white-w.jpg'
-import WhiteM from '../../../assets/white-m.jpg'
+import BlackW from '/black-w.jpg'
+import BlackM from '/black-m.jpg'
+import WhiteW from '/white-w.jpg'
+import WhiteM from '/white-m.jpg'
 
 type ItemsType = {
     Fullname: string,

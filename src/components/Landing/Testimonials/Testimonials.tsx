@@ -1,6 +1,6 @@
-import { Avatar, Card } from "antd";
 import { data } from "../Testimonials/Items";
-
+import { Card } from "@/components/ui/card";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 type ItemsType = {
   Fullname: string;
   Job: string;
@@ -18,9 +18,8 @@ const Testimonials = () => {
           {data.map((item: ItemsType, index: number) => {
             return (
               <Card
+                className="p-5"
                 style={{ height: "fit-content", width: "400px" }}
-                hoverable
-                bordered
                 key={index}>
                 <div className="flex flex-col gap-5">
                   <div className="flex justify-between w-full  items-center ">
@@ -29,7 +28,9 @@ const Testimonials = () => {
                       <p className="font-bold text-[14px]">{item.Job}</p>
                     </div>
                     <div>
-                      <Avatar src={item.Photo} size={50} draggable />
+                      <Avatar>
+                        <AvatarImage src={item.Photo} />
+                      </Avatar>
                     </div>
                   </div>
                   <p className="w-[240px] font-normal text-[16px]">

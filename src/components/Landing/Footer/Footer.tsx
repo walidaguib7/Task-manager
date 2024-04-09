@@ -1,7 +1,7 @@
 import Logo from "../../Logo";
-import facebook from "../../../assets/facebook.svg";
-import twitch from "../../../assets/twitch.svg";
-import twitter from "../../../assets/twitter.svg";
+import facebook from "/facebook.svg";
+import twitch from "/twitch.svg";
+import twitter from "/twitter.svg";
 
 const Footer = () => {
   return (

@@ -1,5 +1,6 @@
-import question from "../../../assets/question-two-color.svg";
-import Accordion from "./Accordion";
+import question from "/question-two-color.svg";
+
+import AccordionUI from "./AccordionUI";
 const Faq = () => {
   return (
     <div className="pt-6 px-24 max-sm:px-8">
@@ -15,8 +16,8 @@ const Faq = () => {
               alt=""
             />
           </div>
-          <div>
-            <Accordion />
+          <div className="flex-1">
+            <AccordionUI />
           </div>
         </div>
       </div>

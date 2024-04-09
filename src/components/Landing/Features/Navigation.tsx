@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button } from "@/components/ui/button";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 
 import { useSwiper } from "swiper/react";

@@ -1,0 +1,30 @@
+.Links span:first-child {
+  color: var(--primary);
+}
+
+.Links a.active {
+  color: #3498db;
+}
+
+.button {
+  background-color: var(--primary);
+  width: 120px;
+  border-radius: 8px;
+}
+
+.Links span {
+  cursor: pointer;
+  font-size: 18px;
+  color: #333333;
+}
+
+.menu {
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .Links .button {
+    display: none;
+  }
+}
