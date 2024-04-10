@@ -11,12 +11,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-import AddCategory from "./Category/AddCategory";
-
-import SelectUI from "./SelectUI";
 import { Textarea } from "@/components/ui/textarea";
-import { DatePickerDemo } from "./DatePick";
-import { PriorityType, StatusType, TaskTypes } from "../TaskTypes";
+
+import { StatusType, TaskTypes } from "../TaskTypes";
 import { Controller, useForm } from "react-hook-form";
 
 import { Databases, ID } from "appwrite";
@@ -30,28 +27,39 @@ import { useQuery, useMutation, useQueryClient } from "react-query";
 import { Calendar } from "@/components/ui/calendar";
 import { useState } from "react";
 import { SelectItem } from "@/components/ui/select";
+import SelectUI from "../AddTasks/SelectUI";
+import AddCategory from "../AddTasks/Category/AddCategory";
+import { DatePickerDemo } from "../AddTasks/DatePick";
+import { useTaskStore } from "@/store/TaskStore";
 
-const AddSheet = () => {
+const UpdateTask = () => {
+  const db = new Databases(client);
+  const taskID = useTaskStore().getTaskId();
+
+  const { data: task } = useQuery(["task", taskID], async () => {
+    return await db.getDocument(DB, TasksCollection, taskID);
+  });
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { control, getValues, reset } = useForm<TaskTypes>({
     defaultValues: {
-      Task_name: "",
-      Description: "",
-      Priority: PriorityType,
-      Status: StatusType,
-      Due_Date: new Date(),
-      Category_ID: "",
+      Task_name: task?.Task_name,
+      Description: task?.Description,
+      Priority: task?.Priority,
+      Status: task?.Status,
+      Due_Date: task?.Due_Date,
+      Category_ID: task?.Category_ID,
       UserID: localStorage.getItem("user"),
     },
   });
   const queryClient = useQueryClient();
-  const db = new Databases(client);
+
   const { data } = useQuery("categories", () => {
     return db.listDocuments(DB, categoryCollection);
   });
 
   const addTask = async () => {
-    await db.createDocument(DB, TasksCollection, ID.unique(), getValues());
+    await db.updateDocument(DB, TasksCollection, taskID, getValues());
     reset();
     queryClient.invalidateQueries("All");
     queryClient.invalidateQueries(StatusType.Todo);
@@ -67,7 +75,7 @@ const AddSheet = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="cursor-pointer">Add tasks</Button>
+        <span className="text-[#3498DB] mt-2">update</span>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
@@ -184,4 +192,4 @@ const AddSheet = () => {
   );
 };
 
-export default AddSheet;
+export default UpdateTask;

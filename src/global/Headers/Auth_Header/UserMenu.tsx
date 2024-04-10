@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
 } from "@radix-ui/react-dropdown-menu";
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Account } from "appwrite";
 import { client } from "@/utils/Appwrite";
 import { useUserStore } from "@/store/UserStore";
@@ -44,9 +44,6 @@ const UserMenu = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="p-4">
           <DropdownMenuSeparator />
-          <DropdownMenuItem className="mt-2">
-            <NavLink to={"/"}>Profile</NavLink>
-          </DropdownMenuItem>
           <DropdownMenuItem className="mt-2">
             <Button onClick={handleLogout}>Log out</Button>
           </DropdownMenuItem>
