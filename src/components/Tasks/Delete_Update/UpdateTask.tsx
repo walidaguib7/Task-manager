@@ -34,25 +34,15 @@ import { useTaskStore } from "@/store/TaskStore";
 import { Update } from "@mui/icons-material";
 import HintUi from "../ShowTasks/Content/HintUi";
 
+
 const UpdateTask = () => {
   const db = new Databases(client);
   const taskID = useTaskStore().getTask();
 
-  const { data: task } = useQuery(["task", taskID], async () => {
-    return await db.getDocument(DB, TasksCollection, taskID);
-  });
+
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { control, getValues, reset } = useForm<TaskTypes>({
-    defaultValues: {
-      Task_name: task?.Task_name,
-      Description: task?.Description,
-      Priority: task?.Priority,
-      Status: task?.Status,
-      Due_Date: task?.Due_Date,
-      Category_ID: task?.Category_ID,
-      UserID: localStorage.getItem("user"),
-    },
   });
   const queryClient = useQueryClient();
 

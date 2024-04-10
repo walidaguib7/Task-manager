@@ -16,7 +16,7 @@ import AddCategory from "./Category/AddCategory";
 import SelectUI from "./SelectUI";
 import { Textarea } from "@/components/ui/textarea";
 import { DatePickerDemo } from "./DatePick";
-import { PriorityType, StatusType, TaskTypes } from "../TaskTypes";
+import { StatusType, TaskTypes } from "../TaskTypes";
 import { Controller, useForm } from "react-hook-form";
 
 import { Databases, ID } from "appwrite";
@@ -33,17 +33,7 @@ import { SelectItem } from "@/components/ui/select";
 
 const AddSheet = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { control, getValues, reset } = useForm<TaskTypes>({
-    defaultValues: {
-      Task_name: "",
-      Description: "",
-      Priority: PriorityType,
-      Status: StatusType,
-      Due_Date: new Date(),
-      Category_ID: "",
-      UserID: localStorage.getItem("user"),
-    },
-  });
+  const { control, getValues, reset } = useForm<TaskTypes>({});
   const queryClient = useQueryClient();
   const db = new Databases(client);
   const { data } = useQuery("categories", () => {
