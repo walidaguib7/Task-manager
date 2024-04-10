@@ -15,6 +15,7 @@ import ProgressUi from "./ProgressUi";
 import PriorityUi from "./PriorityUi";
 import { useTaskStore } from "@/store/TaskStore";
 import UpdateTask from "../../Delete_Update/UpdateTask";
+import { Delete } from "@mui/icons-material";
 
 type ContentType = {
   value: string;
@@ -54,9 +55,9 @@ const TasksContent = ({ value, array }: ContentType) => {
         value={value}>
         {array?.documents.map((doc, i) => (
           <Card
-            onClick={() => task.setTaskId(doc.$id)}
+            onClick={() => task.setTask(doc.$id)}
             key={i}
-            className="cursor-pointer hover:border-[#3498DB] hover:border-2">
+            className="cursor-pointer hover:border-[#3498DB] hover:border-2 shadow-md shadow-blue-100">
             <CardHeader>
               <div className="flex justify-between items-center">
                 <CardTitle className="text-[#2e2f30] text-ellipsis basis[50%]">
@@ -81,7 +82,7 @@ const TasksContent = ({ value, array }: ContentType) => {
                   <span
                     onClick={() => Mutation.mutate(doc.$id)}
                     className="text-red-800  mt-2">
-                    delete
+                    <Delete />
                   </span>
                 </div>
               </div>

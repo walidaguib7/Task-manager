@@ -2,16 +2,16 @@
 import { create } from 'zustand';
 
 
-type TaskIdType = {
-    TaskId: string;
-    setTaskId: (value: string) => void;
-    getTaskId: () => string;
-    isLoggedIn: () => boolean;
+type TaskType = {
+    Task: string;
+    setTask: (value: string) => void;
+    getTask: () => string;
+    
 };
 
-export const useTaskStore = create<TaskIdType>()((set, get) => ({
-    TaskId: "",
-    setTaskId: (TaskId) => set({ TaskId }),
-    getTaskId: () => get().TaskId,
-    isLoggedIn: () => get().TaskId !== "",
+export const useTaskStore = create<TaskType>()((set, get) => ({
+    Task: "",
+    setTask: (Task) => set({ Task }),
+    getTask: () => get().Task,
+
 }));

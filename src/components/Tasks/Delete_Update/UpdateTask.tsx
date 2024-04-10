@@ -16,7 +16,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { StatusType, TaskTypes } from "../TaskTypes";
 import { Controller, useForm } from "react-hook-form";
 
-import { Databases, ID } from "appwrite";
+import { Databases } from "appwrite";
 import {
   categoryCollection,
   client,
@@ -31,10 +31,12 @@ import SelectUI from "../AddTasks/SelectUI";
 import AddCategory from "../AddTasks/Category/AddCategory";
 import { DatePickerDemo } from "../AddTasks/DatePick";
 import { useTaskStore } from "@/store/TaskStore";
+import { Update } from "@mui/icons-material";
+import HintUi from "../ShowTasks/Content/HintUi";
 
 const UpdateTask = () => {
   const db = new Databases(client);
-  const taskID = useTaskStore().getTaskId();
+  const taskID = useTaskStore().getTask();
 
   const { data: task } = useQuery(["task", taskID], async () => {
     return await db.getDocument(DB, TasksCollection, taskID);
@@ -75,7 +77,11 @@ const UpdateTask = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <span className="text-[#3498DB] mt-2">update</span>
+        <HintUi label="update">
+          <span className="text-[#3498DB] mt-2">
+            <Update />
+          </span>
+        </HintUi>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
