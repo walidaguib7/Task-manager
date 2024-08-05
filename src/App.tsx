@@ -11,28 +11,18 @@ import SignUpPage from "./components/Auth/SignUp/SignUp";
 import LandingPage from "./pages/LandingPage";
 
 import AuthHeader from "./global/Headers/Auth_Header/AuthHeader";
-import { useEffect } from "react";
-import { useUserStore } from "./store/UserStore";
-import { Account } from "appwrite";
-import { client } from "./utils/Appwrite";
 import TasksListPage from "./pages/tasksList";
+import axios from "axios";
+import { useQuery } from "react-query";
 
 function App() {
-  const account = new Account(client);
-  const user = useUserStore();
-
-  const isAuthenticated =
-    localStorage.getItem("user") && localStorage.getItem("token");
-
-  useEffect(() => {
-    if (user.getUser() == "") {
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
-    } else {
-      account.get().then((res) => user.setUser(res.$id));
-    }
+  const isAuthenticated = sessionStorage.getItem("token");
+  const data = useQuery("", () => {
+    return axios.get(
+      "http://localhost:5176/api/Tasks/d51bafdd-5757-4a65-9220-6045ac1b65fc"
+    );
   });
-
+  console.log(data.data);
   return (
     <div className="">
       {isAuthenticated ? <AuthHeader /> : <Header />}

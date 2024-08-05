@@ -1,0 +1,25 @@
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 10px;
+}
+
+.item {
+  background-color: white;
+
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #d6d2d2;
+  gap: 14px;
+}
+
+.category {
+  color: #38a3a5;
+}
+
+hr {
+  color: black;
+}

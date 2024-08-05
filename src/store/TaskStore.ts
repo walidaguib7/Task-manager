@@ -1,17 +1,13 @@
-
-import { create } from 'zustand';
-
+import { create } from "zustand";
 
 type TaskType = {
-    Task: string;
-    setTask: (value: string) => void;
-    getTask: () => string;
-    
+  Task: number;
+  setTask: (value: number) => void;
+  getTask: () => number;
 };
 
 export const useTaskStore = create<TaskType>()((set, get) => ({
-    Task: "",
-    setTask: (Task) => set({ Task }),
-    getTask: () => get().Task,
-
+  Task: 0,
+  setTask: (Task) => set({ Task }),
+  getTask: () => get().Task,
 }));

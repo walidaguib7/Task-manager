@@ -9,23 +9,15 @@ import {
 } from "@radix-ui/react-dropdown-menu";
 
 import { useNavigate } from "react-router-dom";
-import { Account } from "appwrite";
-import { client } from "@/utils/Appwrite";
-import { useUserStore } from "@/store/UserStore";
+
 import { Button } from "@/components/ui/button";
 
 const UserMenu = () => {
-  const account = new Account(client);
-  const user = useUserStore();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    const sessionId = await account.getSession("current");
-    console.log(sessionId.$id);
-
-    await account.deleteSession(sessionId.$id);
-    localStorage.removeItem("user");
-    user.setUser("");
+    sessionStorage.removeItem("token");
+    window.location.reload();
     navigate("/");
   };
 
